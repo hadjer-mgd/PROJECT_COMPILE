@@ -1,0 +1,53 @@
+PROGRAM Test
+
+DECL
+INTEGER : a, b, a;         
+FLOAT : x                  
+INTEGER : tab[0];           
+CONST : c = 10;
+CONST : c = 20;            
+CONST : d = 5               
+
+ENDDECL
+
+BEGIN
+
+a = 5;
+b = (10);
+z = 3;                      
+c = 7;                     
+a = x;                      
+a = 5 / 0;                 
+a = 5 / 2;                  
+tab[2] = 5;                 
+a[1] = 5;                 
+tab[1.5] = 3;               
+INTEGER : t[3];
+t[5] = 1;                   
+IF (x) {                   
+    a = 1;
+}
+IF (a > b) {
+    a = 1;
+} ELSE {
+    b = 2;
+}
+
+WHILE (x) {               
+    a = a + 1;
+}
+
+FOR (i : 0 : 1 : 10) {     
+    a = a + 1;
+}
+
+INTEGER : i;
+FOR (i : 0 : 1 : 10) {
+    a = a + 1;
+}
+
+a = 5                   
+
+@                          
+
+END

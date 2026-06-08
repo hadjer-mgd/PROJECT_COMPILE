@@ -1,0 +1,134 @@
+; ============================================================
+; Code assembleur 8086 genere automatiquement
+; Methode : GetinACC du cours (machine a accumulateur)
+; AX = accumulateur (ACC),  BX = registre auxiliaire
+; ============================================================
+
+    .MODEL SMALL
+    .STACK 256
+
+DATA    SEGMENT
+
+    ; --- Variables utilisateur ---
+    X            DW  0
+    i            DW  0
+    A            DW  0
+    C            DW  0
+    B            DW  0
+    K            DW  5
+
+    ; --- Temporaires ---
+
+    ; --- Sauvegardes ACC ---
+    _SAVE0       DW  0
+    _SAVE1       DW  0
+    _SAVE2       DW  0
+
+DATA    ENDS
+
+CODE    SEGMENT
+        ASSUME  CS:CODE, DS:DATA
+
+DEBUT:
+    MOV  AX, DATA
+    MOV  DS, AX
+
+L0:
+; (  0)  =       5                           A
+    MOV  AX, 5                   ; LOAD 5
+    MOV  [A         ], AX        ; STORE A
+
+L1:
+; (  1)  =       9                           B
+    MOV  AX, 9                   ; LOAD 9
+    MOV  [B         ], AX        ; STORE B
+
+L2:
+; (  2)  =       18                          C
+    MOV  AX, 18                  ; LOAD 18
+    MOV  [C         ], AX        ; STORE C
+
+L3:
+; (  3)  =       27                          A
+    MOV  AX, 27                  ; LOAD 27
+    MOV  [A         ], AX        ; STORE A
+
+L4:
+; (  4)  +       9             C             C
+    MOV  [_SAVE0    ], AX        ; STORE _SAVE0
+    MOV  AX, 9                   ; LOAD 9
+    ADD  AX, [C         ]        ; ADD C
+    MOV  [C         ], AX        ; STORE C
+
+L5:
+; (  5)  =       10                          B
+    MOV  AX, 10                  ; LOAD 10
+    MOV  [B         ], AX        ; STORE B
+
+L6:
+; (  6)  =       20                          C
+    MOV  AX, 20                  ; LOAD 20
+    MOV  [C         ], AX        ; STORE C
+
+L7:
+; (  7)  =       30                          A
+    MOV  AX, 30                  ; LOAD 30
+    MOV  [A         ], AX        ; STORE A
+
+L8:
+; (  8)  =       3                           B
+    MOV  AX, 3                   ; LOAD 3
+    MOV  [B         ], AX        ; STORE B
+
+L9:
+; (  9)  =       100                         A
+    MOV  AX, 100                 ; LOAD 100
+    MOV  [A         ], AX        ; STORE A
+
+L10:
+; ( 10)  =       0                           i
+    MOV  AX, 0                   ; LOAD 0
+    MOV  [i         ], AX        ; STORE i
+
+L11:
+; ( 11)  +       K             1             B
+    MOV  [_SAVE1    ], AX        ; STORE _SAVE1
+    MOV  AX, [K         ]        ; LOAD K
+    ADD  AX, 1                   ; ADD 1
+    MOV  [B         ], AX        ; STORE B
+
+L12:
+; ( 12)  BL      14            i             3
+    MOV  AX, [i         ]        ; LOAD i
+    CMP  AX, 3                   ; comparaison
+    JL   L14                      ; saut conditionnel
+
+L13:
+; ( 13)  BR      17                          
+    JMP  L17                      ; B L17
+
+L14:
+; ( 14)  +       i             B             A
+    MOV  AX, [i         ]        ; LOAD i
+    ADD  AX, [B         ]        ; ADD B
+    MOV  [A         ], AX        ; STORE A
+
+L15:
+; ( 15)  +       i             1             i
+    MOV  [_SAVE2    ], AX        ; STORE _SAVE2
+    MOV  AX, [i         ]        ; LOAD i
+    ADD  AX, 1                   ; ADD 1
+    MOV  [i         ], AX        ; STORE i
+
+L16:
+; ( 16)  BR      12                          
+    JMP  L12                      ; B L12
+
+L17:
+    ; --- fin ---
+    MOV  AH, 4Ch
+    MOV  AL, 0
+    INT  21h
+
+CODE    ENDS
+        END  DEBUT

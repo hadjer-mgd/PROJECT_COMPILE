@@ -1,0 +1,38 @@
+PROGRAM TestOpti
+DECL
+INTEGER : A, B, C, i ;
+FLOAT : X ;
+CONST : K = 5 ;
+ENDDECL
+
+BEGIN
+
+A = 3 + 2 ;
+B = A + 4 ;
+
+C = B * 2 ;
+C = C + 0 ;
+
+A = B + C ;
+C = B + C ;
+A = A ;
+
+B = 10 ;
+C = 20 ;
+A = B + C ;
+B = 1 + 2 ;
+
+IF (1 > 0) {
+    A = 100 ;
+} ELSE {
+    A = 200 ;
+}
+
+i = 0 ;
+WHILE (i < 3) {
+    B = K + 1 ;
+    A = i + B ;
+    i = i + 1 ;
+}
+
+END

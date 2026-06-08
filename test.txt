@@ -1,0 +1,57 @@
+PROGRAM Demo
+
+DECL
+
+INTEGER : i, j, n, sum, x, y;
+INTEGER : tab[5];
+
+CONST : c1 = 10;
+CONST : c2 = 2;
+
+ENDDECL
+
+BEGIN
+
+i = 0;
+j = 0;
+n = 5;
+sum = 0;
+x = 2;
+y = 4;
+WHILE (i < n) {
+    tab[i] = i + c2;
+    i = i + 1;
+}
+FOR (j : 0 : 1 : n) {
+
+    IF (j < n) {
+
+        IF ((j < 3) && (tab[j] > 1)) {
+            sum = sum + tab[j];
+        }
+        ELSE {
+
+            WHILE (x < 10) {
+                x = x + 1;
+
+                IF (x > 5) {
+                    y = y + x;
+                }
+            }
+        }
+    }
+    ELSE {
+        sum = sum + c1;
+    }
+}
+
+sum = sum + (c1 * c2) ;
+
+IF ( !(sum < 0) || (x > y) ) {
+    sum = sum + 1;
+}
+ELSE {
+    sum = sum - 1;
+}
+
+END
