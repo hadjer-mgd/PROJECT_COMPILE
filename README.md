@@ -13,5 +13,7 @@ Projet de compilation réalisé avec Flex et Bison.
 
 - flex.l
 - bison.y
+- ts.c
+- quad.c
 - codegen.c
 - Optim.c
